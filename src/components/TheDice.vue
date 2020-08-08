@@ -1,35 +1,21 @@
 <template>
   <div class="dice-container">
-    <SingleDice v-for="(roll, index) in rolls" :key="index" :side="roll" />
-    <button @click="roll">Roll (temporary)</button>
+    <SingleDice v-for="(roll, index) in diceRoll" :key="index" :side="roll" />
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import SingleDice from "@/components/SingleDice";
 
 export default {
   name: "TheDice",
 
   components: {
-    SingleDice
+    SingleDice,
   },
 
-  data() {
-    return {
-      rolls: [2, 3, 4, 1, 2]
-    };
-  },
-
-  methods: {
-    roll() {
-      this.rolls.length = 0;
-      for (let i = 0; i < 5; i++) {
-        const randomNum = Math.floor(Math.random() * 6) + 1;
-        this.rolls.push(randomNum);
-      }
-    }
-  }
+  computed: mapState(["diceRoll"]),
 };
 </script>
 
