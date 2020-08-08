@@ -10,8 +10,8 @@ import GameBoard from "@/views/GameBoard";
 export default {
   name: "App",
   components: {
-    GameBoard
-  }
+    GameBoard,
+  },
 };
 </script>
 
@@ -43,17 +43,22 @@ html {
 
 @media screen and (min-width: 1920px) {
   html {
-    font-size: 26px;
+    font-size: 36px;
   }
 }
 
 body {
-  margin: 3rem;
+  margin: 2rem;
   color: white;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   line-height: 1.6;
   font-size: 1rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 </style>
