@@ -27,10 +27,16 @@ export default {
 <style scoped>
 .gameboard {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: min-content min-content 1fr;
-  column-gap: 3rem;
-  row-gap: 1.5rem;
+  row-gap: 1rem;
+}
+
+@media screen and (min-width: 930px) {
+  .gameboard {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content min-content 1fr;
+    column-gap: 3rem;
+    row-gap: 1.5rem;
+  }
 }
 
 .gameboard__dice {
@@ -45,8 +51,10 @@ export default {
   grid-column: 1 / 2;
 }
 
-.gameboard__score-board {
-  grid-column: 2 / 3;
-  grid-row: 1 / 4;
+@media screen and (min-width: 930px) {
+  .gameboard__score-board {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+  }
 }
 </style>

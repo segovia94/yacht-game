@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     diceRoll: [1, 2, 3, 4, 5],
-    rollsRemaining: 3
+    rollsRemaining: 3,
+    showRules: false
   },
 
   mutations: {
@@ -20,6 +21,10 @@ export default new Vuex.Store({
 
     resetRollsRemaining(state) {
       state.rollsRemaining = 3;
+    },
+
+    toggleRules(state) {
+      state.showRules = !state.showRules;
     }
   },
 

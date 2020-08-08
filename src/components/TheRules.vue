@@ -1,100 +1,118 @@
 <template>
-  <section class="rules">
-    <div class="rules__description">
-      <h1 class="rules__title">Rules:</h1>
-      <p>
-        Roll dice up to 3 times per turn to make combinations. Clicking one of
-        the dice will lock it between rolls. Lock in points for a category by
-        clicking the points on the scoreboard.
-      </p>
-    </div>
+  <section class="rules" :class="{ 'rules--hide': !showRules }">
+    <div class="rules__wrapper">
+      <div class="rules__description">
+        <h1 class="rules__title">Rules:</h1>
+        <p>
+          Roll dice up to 3 times per turn to make combinations. Clicking one of
+          the dice will lock it between rolls. Lock in points for a category by
+          clicking the points on the scoreboard.
+        </p>
+      </div>
 
-    <table class="rules__table">
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Max Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Ones</td>
-          <td>Total of all "ones" rolled</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Twos</td>
-          <td>Total of all "twos" rolled</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>Threes</td>
-          <td>Total of all "threes" rolled</td>
-          <td>15</td>
-        </tr>
-        <tr>
-          <td>Fours</td>
-          <td>Total of all "fours" rolled</td>
-          <td>20</td>
-        </tr>
-        <tr>
-          <td>Fives</td>
-          <td>Total of all "fives" rolled</td>
-          <td>25</td>
-        </tr>
-        <tr>
-          <td>Sixes</td>
-          <td>Total of all "sixes" rolled</td>
-          <td>30</td>
-        </tr>
-        <tr>
-          <td>Full House</td>
-          <td>Three of one number and two of another</td>
-          <td>28</td>
-        </tr>
-        <tr>
-          <td>Four-of-a-Kind</td>
-          <td>At least four dice showing the same number</td>
-          <td>24</td>
-        </tr>
-        <tr>
-          <td>Little Straight</td>
-          <td>1-2-3-4-5</td>
-          <td>30</td>
-        </tr>
-        <tr>
-          <td>Big Straight</td>
-          <td>2-3-4-5-6</td>
-          <td>30</td>
-        </tr>
-        <tr>
-          <td>Choice</td>
-          <td>Total of all dice together</td>
-          <td>30</td>
-        </tr>
-        <tr>
-          <td>Yacht</td>
-          <td>All five dice showing the same number</td>
-          <td>50</td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="rules__table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Max Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ones</td>
+            <td>Total of all "ones" rolled</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Twos</td>
+            <td>Total of all "twos" rolled</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>Threes</td>
+            <td>Total of all "threes" rolled</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>Fours</td>
+            <td>Total of all "fours" rolled</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>Fives</td>
+            <td>Total of all "fives" rolled</td>
+            <td>25</td>
+          </tr>
+          <tr>
+            <td>Sixes</td>
+            <td>Total of all "sixes" rolled</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>Full House</td>
+            <td>Three of one number and two of another</td>
+            <td>28</td>
+          </tr>
+          <tr>
+            <td>Four-of-a-Kind</td>
+            <td>At least four dice showing the same number</td>
+            <td>24</td>
+          </tr>
+          <tr>
+            <td>Little Straight</td>
+            <td>1-2-3-4-5</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>Big Straight</td>
+            <td>2-3-4-5-6</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>Choice</td>
+            <td>Total of all dice together</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>Yacht</td>
+            <td>All five dice showing the same number</td>
+            <td>50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "TheRules",
+
+  computed: mapState(["showRules"]),
 };
 </script>
 
 <style>
 .rules {
-  padding: 1rem;
   background-color: #408f3b;
   border-radius: 0.25rem;
   font-size: 0.65rem;
+  transition: max-height 0.5s ease-in-out;
+  max-height: 700px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 929px) {
+  .rules--hide {
+    max-height: 0;
+  }
+}
+
+.rules__wrapper {
+  padding: 1rem;
 }
 
 .rules__description {

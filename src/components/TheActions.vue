@@ -1,11 +1,17 @@
 <template>
   <div class="game-actions">
-    <div v-if="rollsRemaining">
-      {{ rollsRemaining }} Roll<span v-if="rollsRemaining !== 1">s</span> left
+    <div>
+      <div v-if="rollsRemaining">
+        {{ rollsRemaining }} Roll<span v-if="rollsRemaining !== 1">s</span> left
+      </div>
+      <div v-else>
+        Choose a point category
+      </div>
+      <button @click="toggleRules" class="game-actions__toggle-rules">
+        <span v-if="!showRules">Show</span><span v-else>Hide</span> Rules
+      </button>
     </div>
-    <div v-else>
-      Choose a point category
-    </div>
+
     <button
       :disabled="!rollsRemaining"
       @click="roll"
@@ -22,7 +28,7 @@ import { mapState } from "vuex";
 export default {
   name: "TheActions",
 
-  computed: mapState(["rollsRemaining"]),
+  computed: mapState(["rollsRemaining", "showRules"]),
 
   methods: {
     roll() {
@@ -34,6 +40,10 @@ export default {
       this.$store.commit("setDiceRoll", newRoll);
       this.$store.commit("decreaseRollsRemaining");
     },
+
+    toggleRules() {
+      this.$store.commit("toggleRules");
+    },
   },
 };
 </script>
@@ -43,6 +53,21 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.game-actions__toggle-rules {
+  padding: 0.25rem 1rem;
+  background: #408f3b;
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 930px) {
+  .game-actions__toggle-rules {
+    display: none;
+  }
 }
 
 .game-actions__button {
