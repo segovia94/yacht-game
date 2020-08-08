@@ -1,23 +1,41 @@
 <template>
   <div class="dice-container">
-    <div>dice</div>
-    <div>dice</div>
-    <div>dice</div>
-    <div>dice</div>
-    <div>dice</div>
+    <SingleDice v-for="(roll, index) in rolls" :key="index" :side="roll" />
+    <button @click="roll">Roll (temporary)</button>
   </div>
 </template>
 
 <script>
+import SingleDice from "@/components/SingleDice";
+
 export default {
-  name: "TheDice"
+  name: "TheDice",
+
+  components: {
+    SingleDice
+  },
+
+  data() {
+    return {
+      rolls: [2, 3, 4, 1, 2]
+    };
+  },
+
+  methods: {
+    roll() {
+      this.rolls.length = 0;
+      for (let i = 0; i < 5; i++) {
+        const randomNum = Math.floor(Math.random() * 6) + 1;
+        this.rolls.push(randomNum);
+      }
+    }
+  }
 };
 </script>
 
 <style>
 .dice-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  column-gap: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 </style>
