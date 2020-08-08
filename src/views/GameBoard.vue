@@ -19,8 +19,8 @@ export default {
     TheDice,
     TheActions,
     TheRules,
-    ScoreBoard
-  }
+    ScoreBoard,
+  },
 };
 </script>
 
@@ -30,7 +30,7 @@ export default {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: min-content min-content 1fr;
   column-gap: 3rem;
-  row-gap: 2rem;
+  row-gap: 1.5rem;
 }
 
 .gameboard__dice {

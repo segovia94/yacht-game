@@ -1,10 +1,18 @@
 <template>
   <div class="game-actions">
-    <div>{{ rollsRemaining }} Rolls left</div>
-    <button v-if="rollsRemaining" @click="roll">Roll</button>
+    <div v-if="rollsRemaining">
+      {{ rollsRemaining }} Roll<span v-if="rollsRemaining !== 1">s</span> left
+    </div>
     <div v-else>
       Choose a point category
     </div>
+    <button
+      :disabled="!rollsRemaining"
+      @click="roll"
+      class="game-actions__button"
+    >
+      Roll
+    </button>
   </div>
 </template>
 
@@ -34,5 +42,23 @@ export default {
 .game-actions {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.game-actions__button {
+  padding: 0.5rem 4rem;
+  background: var(--red-dark);
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.game-actions__button:disabled {
+  opacity: 0.25;
+  cursor: initial;
 }
 </style>
