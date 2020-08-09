@@ -5,12 +5,67 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    round: 1,
     diceRoll: [1, 2, 3, 4, 5],
     rollsRemaining: 3,
-    showRules: false
+    showRules: false,
+    currentPlayer: "",
+    // TODO: make players editable and possibly create a players class.
+    players: {
+      "John": {
+        ones: 3,
+        twos: null,
+        threes: null,
+        fours: null,
+        fives: null,
+        sixes: null,
+        "full house": null,
+        "four of a kind": null,
+        "little straight": null,
+        "big straight": null,
+        choice: null,
+        yacht: null,
+      },
+      "Jane": {
+        ones: null,
+        twos: null,
+        threes: 12,
+        fours: null,
+        fives: null,
+        sixes: 6,
+        "full house": null,
+        "four of a kind": null,
+        "little straight": null,
+        "big straight": null,
+        choice: null,
+        yacht: null,
+      },
+      "FooBar": {
+        ones: null,
+        twos: null,
+        threes: null,
+        fours: null,
+        fives: null,
+        sixes: null,
+        "full house": null,
+        "four of a kind": null,
+        "little straight": null,
+        "big straight": null,
+        choice: null,
+        yacht: null,
+      }
+    }
   },
 
   mutations: {
+    increaseRound(state) {
+      state.round++;
+    },
+
+    resetRounds(state) {
+      state.round = 1;
+    },
+
     setDiceRoll(state, payload) {
       state.diceRoll = payload;
     },

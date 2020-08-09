@@ -2,31 +2,51 @@
   <table class="scoreboard">
     <thead class="scoreboard__head">
       <tr>
-        <th class="scoreboard__round">Round 1</th>
-        <th><span class="scoreboard__name">John</span></th>
-        <th><span class="scoreboard__name">Doe</span></th>
+        <th class="scoreboard__round">Round {{ round }}</th>
+        <th v-for="(score, name) in players" :key="name">
+          <span class="scoreboard__name">{{ name }}</span>
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(category, key) in categories" :key="key">
+      <tr v-for="(category, categoryKey) in categories" :key="categoryKey">
         <td>{{ category }}</td>
-        <td></td>
-        <td></td>
+        <td
+          v-for="(score, name) in players"
+          :key="name"
+          :class="{ 'has-button': score[categoryKey] }"
+        >
+          <CategoryButton
+            :score="score[categoryKey]"
+            v-if="score[categoryKey] && categoryKey === 'threes'"
+          />
+          <div v-else>{{ score[categoryKey] }}</div>
+        </td>
       </tr>
     </tbody>
     <tfoot class="scoreboard__total">
       <tr>
         <td>Total</td>
-        <td>300</td>
-        <td>0</td>
+        <td v-for="(score, name) in players" :key="name">
+          <playerTotal :player="score" />
+        </td>
       </tr>
     </tfoot>
   </table>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import playerTotal from "@/components/PlayerTotal";
+import CategoryButton from "@/components/CategoryButton";
+
 export default {
   name: "ScoreBoard",
+
+  components: {
+    playerTotal,
+    CategoryButton,
+  },
 
   data() {
     return {
@@ -46,6 +66,8 @@ export default {
       },
     };
   },
+
+  computed: mapState(["round", "players"]),
 };
 </script>
 
@@ -84,5 +106,9 @@ export default {
   background-color: #712600;
   color: white;
   font-weight: bold;
+}
+
+.scoreboard .has-button {
+  padding: 0 0.25rem;
 }
 </style>
