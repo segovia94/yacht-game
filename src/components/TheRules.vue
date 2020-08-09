@@ -99,7 +99,7 @@ export default {
 .rules {
   background-color: #408f3b;
   border-radius: 0.25rem;
-  font-size: 0.65rem;
+  font-size: 0.825rem;
   transition: max-height 0.5s ease-in-out;
   max-height: 700px;
   overflow: hidden;
@@ -111,8 +111,20 @@ export default {
   }
 }
 
+@media screen and (min-width: 930px) {
+  .rules {
+    font-size: 0.65rem;
+  }
+}
+
 .rules__wrapper {
-  padding: 1rem;
+  padding: 0.5rem;
+}
+
+@media screen and (min-width: 930px) {
+  .rules__wrapper {
+    padding: 1rem;
+  }
 }
 
 .rules__description {
@@ -133,10 +145,24 @@ export default {
 
 .rules__table {
   width: 100%;
-  font-size: 0.825em;
+}
+
+@media screen and (max-width: 929px) {
+  .rules__table {
+    width: calc(100% + 1rem);
+    line-height: 1.3;
+    margin: 0 -0.5rem;
+  }
+}
+
+@media screen and (min-width: 930px) {
+  .rules__table {
+    font-size: 0.825em;
+  }
 }
 
 .rules__table th {
+  padding-left: 0.25em;
   text-align: left;
   border-bottom: 1px solid white;
 }
