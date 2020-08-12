@@ -23,37 +23,37 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
 export default {
-  name: "TheActions",
+  name: 'TheActions',
 
-  computed: mapState(["diceRoll", "lockedDice", "rollsRemaining", "showRules"]),
+  computed: mapState(['diceRoll', 'lockedDice', 'rollsRemaining', 'showRules']),
 
   methods: {
     roll() {
-      this.$store.commit("lockDice");
+      this.$store.commit('lockDice')
 
-      const newRoll = [];
+      const newRoll = []
       for (let i = 0; i < 5; i++) {
         // Use the old dice roll number if it has been locked.
         if (this.lockedDice.has(i)) {
-          newRoll.push(this.diceRoll[i]);
+          newRoll.push(this.diceRoll[i])
         } else {
-          const randomNum = Math.floor(Math.random() * 6) + 1;
-          newRoll.push(randomNum);
+          const randomNum = Math.floor(Math.random() * 6) + 1
+          newRoll.push(randomNum)
         }
       }
-      this.$store.commit("setDiceRoll", newRoll);
-      this.$store.commit("decreaseRollsRemaining");
-      this.$store.commit("showScoringOptions");
+      this.$store.commit('setDiceRoll', newRoll)
+      this.$store.commit('decreaseRollsRemaining')
+      this.$store.commit('showScoringOptions')
     },
 
     toggleRules() {
-      this.$store.commit("toggleRules");
+      this.$store.commit('toggleRules')
     }
   }
-};
+}
 </script>
 
 <style>

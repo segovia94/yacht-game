@@ -61,12 +61,12 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import playerTotal from "@/components/PlayerTotal";
-import CategoryButton from "@/components/CategoryButton";
+import { mapState } from 'vuex'
+import playerTotal from '@/components/PlayerTotal'
+import CategoryButton from '@/components/CategoryButton'
 
 export default {
-  name: "ScoreBoard",
+  name: 'ScoreBoard',
 
   components: {
     playerTotal,
@@ -76,20 +76,20 @@ export default {
   data() {
     return {
       categories: {
-        ones: "Ones",
-        twos: "Twos",
-        threes: "Threes",
-        fours: "Fours",
-        fives: "Fives",
-        sixes: "Sixes",
-        "full house": "Full House",
-        "four of a kind": "Four-of-a-Kind",
-        "little straight": "Little Straight",
-        "big straight": "Big Straight",
-        choice: "Choice",
-        yacht: "Yacht"
+        ones: 'Ones',
+        twos: 'Twos',
+        threes: 'Threes',
+        fours: 'Fours',
+        fives: 'Fives',
+        sixes: 'Sixes',
+        'full house': 'Full House',
+        'four of a kind': 'Four-of-a-Kind',
+        'little straight': 'Little Straight',
+        'big straight': 'Big Straight',
+        choice: 'Choice',
+        yacht: 'Yacht'
       }
-    };
+    }
   },
 
   computed: {
@@ -97,18 +97,18 @@ export default {
       const total = Object.values(this.possibleScores).reduce(
         (prev, current) => prev + current,
         0
-      );
-      return total === 0;
+      )
+      return total === 0
     },
     ...mapState([
-      "round",
-      "players",
-      "currentPlayer",
-      "possibleScores",
-      "showScoringOptions"
+      'round',
+      'players',
+      'currentPlayer',
+      'possibleScores',
+      'showScoringOptions'
     ])
   }
-};
+}
 </script>
 
 <style>

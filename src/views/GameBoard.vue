@@ -8,20 +8,20 @@
 </template>
 
 <script>
-import TheDice from "@/components/TheDice";
-import TheActions from "@/components/TheActions";
-import TheRules from "@/components/TheRules";
-import ScoreBoard from "@/components/ScoreBoard";
+import TheDice from '@/components/TheDice'
+import TheActions from '@/components/TheActions'
+import TheRules from '@/components/TheRules'
+import ScoreBoard from '@/components/ScoreBoard'
 
 export default {
-  name: "GameBoard",
+  name: 'GameBoard',
   components: {
     TheDice,
     TheActions,
     TheRules,
     ScoreBoard
   }
-};
+}
 </script>
 
 <style scoped>

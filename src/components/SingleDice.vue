@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
 export default {
-  name: "SingleDice",
+  name: 'SingleDice',
 
   props: {
     position: {
@@ -40,21 +40,21 @@ export default {
 
   computed: {
     selected() {
-      return this.selectedDice.has(this.position);
+      return this.selectedDice.has(this.position)
     },
-    ...mapState(["selectedDice"])
+    ...mapState(['selectedDice'])
   },
 
   methods: {
     toggleLock() {
       if (this.selected) {
-        this.$store.commit("removeDice", this.position);
+        this.$store.commit('removeDice', this.position)
       } else {
-        this.$store.commit("selectDice", this.position);
+        this.$store.commit('selectDice', this.position)
       }
     }
   }
-};
+}
 </script>
 
 <style>
@@ -96,22 +96,22 @@ export default {
   transition: transform 1s;
 }
 
-[data-show="1"] {
+[data-show='1'] {
   transform: translateZ(var(--dice-size-half-negative)) rotateY(0deg);
 }
-[data-show="2"] {
+[data-show='2'] {
   transform: translateZ(var(--dice-size-half-negative)) rotateY(-90deg);
 }
-[data-show="6"] {
+[data-show='6'] {
   transform: translateZ(var(--dice-size-half-negative)) rotateY(-180deg);
 }
-[data-show="5"] {
+[data-show='5'] {
   transform: translateZ(var(--dice-size-half-negative)) rotateY(90deg);
 }
-[data-show="3"] {
+[data-show='3'] {
   transform: translateZ(var(--dice-size-half-negative)) rotateX(-90deg);
 }
-[data-show="4"] {
+[data-show='4'] {
   transform: translateZ(var(--dice-size-half-negative)) rotateX(90deg);
 }
 

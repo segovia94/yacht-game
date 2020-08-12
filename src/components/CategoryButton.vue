@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
 export default {
-  name: "CategoryButton",
+  name: 'CategoryButton',
 
   props: {
     score: {
@@ -29,20 +29,20 @@ export default {
     }
   },
 
-  computed: mapState(["rollsRemaining"]),
+  computed: mapState(['rollsRemaining']),
 
   methods: {
     updateScore() {
-      this.$store.commit("updatePlayerScore", {
+      this.$store.commit('updatePlayerScore', {
         score: this.score,
         player: this.player,
         category: this.category
-      });
-      this.$store.commit("hideScoringOptions");
-      this.$store.commit("nextTurn");
+      })
+      this.$store.commit('hideScoringOptions')
+      this.$store.commit('nextTurn')
     }
   }
-};
+}
 </script>
 
 <style>

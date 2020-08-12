@@ -11,18 +11,18 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import SingleDice from "@/components/SingleDice";
+import { mapState } from 'vuex'
+import SingleDice from '@/components/SingleDice'
 
 export default {
-  name: "TheDice",
+  name: 'TheDice',
 
   components: {
     SingleDice
   },
 
-  computed: mapState(["diceRoll", "lockedDice"])
-};
+  computed: mapState(['diceRoll', 'lockedDice'])
+}
 </script>
 
 <style>

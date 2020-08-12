@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import GameBoard from "@/views/GameBoard";
+import GameBoard from '@/views/GameBoard'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     GameBoard
   }
-};
+}
 </script>
 
 <style>
@@ -50,9 +50,9 @@ html {
 body {
   margin: 1rem;
   color: white;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
   line-height: 1.6;
   font-size: 1rem;
 }
