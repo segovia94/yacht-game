@@ -29,6 +29,6 @@ export default {
 .dice-container {
   display: flex;
   justify-content: space-between;
-  gap: .25rem;
+  gap: 0.25rem;
 }
 </style>

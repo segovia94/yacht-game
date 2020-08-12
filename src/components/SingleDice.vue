@@ -3,7 +3,9 @@
     class="dice"
     :class="{ 'dice--locked': locked, 'dice--selected': selected }"
   >
-    <button v-if="!locked" class="dice__toggle" @click="toggleLock">{{ side }}</button>
+    <button v-if="!locked" class="dice__toggle" @click="toggleLock">
+      {{ side }}
+    </button>
     <div class="cube" :data-show="side">
       <div class="cube__face cube__face--1">1</div>
       <div class="cube__face cube__face--6">6</div>
@@ -51,7 +53,7 @@ export default {
         this.$store.commit("selectDice", this.position);
       }
     }
-  },
+  }
 };
 </script>
 
@@ -62,7 +64,7 @@ export default {
   --dice-size-half-negative: calc(var(--dice-size-half) * -1);
   perspective: 400px;
   position: relative;
-  padding: .2rem;
+  padding: 0.2rem;
   border-radius: 5%;
 }
 

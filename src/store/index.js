@@ -114,7 +114,7 @@ export default new Vuex.Store({
 
     updatePlayerScore(state, payload) {
       state.players[payload.player][payload.category] = payload.score;
-      state.possibleScores = {}
+      state.possibleScores = {};
     },
 
     showScoringOptions(state) {
@@ -141,6 +141,6 @@ export default new Vuex.Store({
       state.currentPlayer = nextPlayer;
       state.lockedDice = new Set();
       state.selectedDice = new Set();
-    },
+    }
   }
 });

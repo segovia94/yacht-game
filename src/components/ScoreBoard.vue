@@ -100,7 +100,13 @@ export default {
       );
       return total === 0;
     },
-    ...mapState(["round", "players", "currentPlayer", "possibleScores", "showScoringOptions"])
+    ...mapState([
+      "round",
+      "players",
+      "currentPlayer",
+      "possibleScores",
+      "showScoringOptions"
+    ])
   }
 };
 </script>
