@@ -1,8 +1,16 @@
 <template>
-  <button class="category-button" @click="updateScore">{{ score }}</button>
+  <button
+    class="category-button"
+    :class="{ 'category-button--pulse': rollsRemaining < 1 }"
+    @click="updateScore"
+  >
+    {{ score }}
+  </button>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "CategoryButton",
 
@@ -20,6 +28,8 @@ export default {
       required: true
     }
   },
+
+  computed: mapState(["rollsRemaining"]),
 
   methods: {
     updateScore() {
@@ -46,9 +56,11 @@ export default {
   color: white;
   cursor: pointer;
   font-size: 1rem;
-  opacity: 1;
-  animation-duration: 1s;
-  animation-name: delay-visibility;
+  animation: 1s delay-visibility;
+}
+
+.category-button--pulse {
+  animation: 1s pulse 3 ease-in-out;
 }
 
 @keyframes delay-visibility {
@@ -62,6 +74,20 @@ export default {
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 </style>
