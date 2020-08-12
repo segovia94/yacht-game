@@ -11,10 +11,10 @@ export default new Vuex.Store({
     selectedDice: new Set(),
     rollsRemaining: 3,
     showRules: false,
-    currentPlayer: "",
+    currentPlayer: "Player 1",
     // TODO: make players editable and possibly create a players class.
     players: {
-      John: {
+      "Player 1": {
         ones: 3,
         twos: null,
         threes: null,
@@ -28,7 +28,7 @@ export default new Vuex.Store({
         choice: null,
         yacht: null
       },
-      Jane: {
+      "Player 2": {
         ones: null,
         twos: null,
         threes: 12,
@@ -42,7 +42,7 @@ export default new Vuex.Store({
         choice: null,
         yacht: null
       },
-      FooBar: {
+      "Player 3": {
         ones: null,
         twos: null,
         threes: null,

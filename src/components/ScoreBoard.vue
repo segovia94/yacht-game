@@ -3,7 +3,7 @@
     <thead class="scoreboard__head">
       <tr>
         <th class="scoreboard__round">Round {{ round }}</th>
-        <th v-for="(score, name) in players" :key="name">
+        <th v-for="(score, name) in players" :key="name" :class="{'scoreboard__current-player': name === currentPlayer}">
           <span class="scoreboard__name">{{ name }}</span>
         </th>
       </tr>
@@ -14,7 +14,10 @@
         <td
           v-for="(score, name) in players"
           :key="name"
-          :class="{ 'has-button': score[categoryKey] }"
+          :class="{
+            'has-button': score[categoryKey],
+            'scoreboard__current-player': name === currentPlayer
+          }"
         >
           <CategoryButton
             :score="score[categoryKey]"
@@ -67,7 +70,7 @@ export default {
     };
   },
 
-  computed: mapState(["round", "players"])
+  computed: mapState(["round", "players", "currentPlayer"])
 };
 </script>
 
@@ -100,6 +103,11 @@ export default {
 .scoreboard__name {
   transform: rotate(208deg);
   writing-mode: vertical-lr;
+}
+
+.scoreboard__current-player {
+  background-color: #fdffbd;
+  transition: background-color 1s;
 }
 
 .scoreboard__total {
