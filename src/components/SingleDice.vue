@@ -1,5 +1,9 @@
 <template>
-  <div class="dice">
+  <div
+    class="dice"
+    :class="{ 'dice--locked': locked, 'dice--selected': selected }"
+  >
+    <button v-if="!locked" class="dice__toggle" @click="toggleLock">{{ side }}</button>
     <div class="cube" :data-show="side">
       <div class="cube__face cube__face--1">1</div>
       <div class="cube__face cube__face--6">6</div>
@@ -16,11 +20,36 @@ export default {
   name: "SingleDice",
 
   props: {
+    position: {
+      type: Number,
+      default: 0
+    },
     side: {
       type: Number,
       default: 1
+    },
+    locked: {
+      type: Boolean,
+      default: false
     }
-  }
+  },
+
+  data() {
+    return {
+      selected: false
+    }
+  },
+
+  methods: {
+    toggleLock() {
+      this.selected = !this.selected;
+      if (this.selected) {
+        this.$store.commit("selectDice", this.position);
+      } else {
+        this.$store.commit("removeDice", this.position);
+      }
+    }
+  },
 };
 </script>
 
@@ -30,6 +59,28 @@ export default {
   --dice-size-half: calc(var(--dice-size) / 2);
   --dice-size-half-negative: calc(var(--dice-size-half) * -1);
   perspective: 400px;
+  position: relative;
+  padding: .2rem;
+  border-radius: 5%;
+}
+
+.dice--selected {
+  background-color: var(--yellow);
+}
+
+.dice--locked {
+  background-color: var(--red);
+}
+
+.dice__toggle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
 }
 
 .cube {

@@ -7,6 +7,8 @@ export default new Vuex.Store({
   state: {
     round: 1,
     diceRoll: [1, 2, 3, 4, 5],
+    lockedDice: new Set(),
+    selectedDice: new Set(),
     rollsRemaining: 3,
     showRules: false,
     currentPlayer: "",
@@ -80,6 +82,19 @@ export default new Vuex.Store({
 
     toggleRules(state) {
       state.showRules = !state.showRules;
+    },
+
+    selectDice(state, payload) {
+      state.selectedDice.add(payload);
+    },
+
+    removeDice(state, payload) {
+      state.selectedDice.delete(payload);
+    },
+
+    lockDice(state) {
+      state.lockedDice = new Set([...state.lockedDice, ...state.selectedDice]);
+      state.selectedDice.clear();
     }
   },
 

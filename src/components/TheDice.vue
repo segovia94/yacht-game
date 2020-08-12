@@ -1,6 +1,12 @@
 <template>
   <div class="dice-container">
-    <SingleDice v-for="(roll, index) in diceRoll" :key="index" :side="roll" />
+    <SingleDice
+      v-for="(roll, index) in diceRoll"
+      :key="index"
+      :position="index"
+      :side="roll"
+      :locked="lockedDice.has(index)"
+    />
   </div>
 </template>
 
@@ -15,7 +21,7 @@ export default {
     SingleDice
   },
 
-  computed: mapState(["diceRoll"])
+  computed: mapState(["diceRoll", "lockedDice"])
 };
 </script>
 
@@ -23,5 +29,6 @@ export default {
 .dice-container {
   display: flex;
   justify-content: space-between;
+  gap: .25rem;
 }
 </style>
