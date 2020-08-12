@@ -9,15 +9,15 @@ export default {
   props: {
     player: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
 
   computed: {
     total() {
       const values = Object.values(this.player);
       return values.reduce((prev, current) => prev + current, 0);
-    },
-  },
+    }
+  }
 };
 </script>

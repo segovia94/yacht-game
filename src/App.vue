@@ -10,8 +10,8 @@ import GameBoard from "@/views/GameBoard";
 export default {
   name: "App",
   components: {
-    GameBoard,
-  },
+    GameBoard
+  }
 };
 </script>
 

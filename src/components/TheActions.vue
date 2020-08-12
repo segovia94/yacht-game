@@ -43,8 +43,8 @@ export default {
 
     toggleRules() {
       this.$store.commit("toggleRules");
-    },
-  },
+    }
+  }
 };
 </script>
 

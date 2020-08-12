@@ -91,7 +91,7 @@ import { mapState } from "vuex";
 export default {
   name: "TheRules",
 
-  computed: mapState(["showRules"]),
+  computed: mapState(["showRules"])
 };
 </script>
 

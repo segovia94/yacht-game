@@ -9,9 +9,9 @@ export default {
   props: {
     score: {
       type: Number,
-      default: 0,
-    },
-  },
+      default: 0
+    }
+  }
 };
 </script>
 

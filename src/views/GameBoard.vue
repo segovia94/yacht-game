@@ -19,8 +19,8 @@ export default {
     TheDice,
     TheActions,
     TheRules,
-    ScoreBoard,
-  },
+    ScoreBoard
+  }
 };
 </script>
 

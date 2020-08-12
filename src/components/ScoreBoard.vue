@@ -45,7 +45,7 @@ export default {
 
   components: {
     playerTotal,
-    CategoryButton,
+    CategoryButton
   },
 
   data() {
@@ -62,12 +62,12 @@ export default {
         "little straight": "Little Straight",
         "big straight": "Big Straight",
         choice: "Choice",
-        yacht: "Yacht",
-      },
+        yacht: "Yacht"
+      }
     };
   },
 
-  computed: mapState(["round", "players"]),
+  computed: mapState(["round", "players"])
 };
 </script>
 

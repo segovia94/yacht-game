@@ -12,7 +12,7 @@ export default new Vuex.Store({
     currentPlayer: "",
     // TODO: make players editable and possibly create a players class.
     players: {
-      "John": {
+      John: {
         ones: 3,
         twos: null,
         threes: null,
@@ -24,9 +24,9 @@ export default new Vuex.Store({
         "little straight": null,
         "big straight": null,
         choice: null,
-        yacht: null,
+        yacht: null
       },
-      "Jane": {
+      Jane: {
         ones: null,
         twos: null,
         threes: 12,
@@ -38,9 +38,9 @@ export default new Vuex.Store({
         "little straight": null,
         "big straight": null,
         choice: null,
-        yacht: null,
+        yacht: null
       },
-      "FooBar": {
+      FooBar: {
         ones: null,
         twos: null,
         threes: null,
@@ -52,7 +52,7 @@ export default new Vuex.Store({
         "little straight": null,
         "big straight": null,
         choice: null,
-        yacht: null,
+        yacht: null
       }
     }
   },

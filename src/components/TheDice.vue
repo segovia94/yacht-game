@@ -12,10 +12,10 @@ export default {
   name: "TheDice",
 
   components: {
-    SingleDice,
+    SingleDice
   },
 
-  computed: mapState(["diceRoll"]),
+  computed: mapState(["diceRoll"])
 };
 </script>
 
