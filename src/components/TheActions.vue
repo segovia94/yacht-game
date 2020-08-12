@@ -46,6 +46,7 @@ export default {
       }
       this.$store.commit("setDiceRoll", newRoll);
       this.$store.commit("decreaseRollsRemaining");
+      this.$store.commit("showScoringOptions");
     },
 
     toggleRules() {

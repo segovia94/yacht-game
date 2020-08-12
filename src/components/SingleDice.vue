@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "SingleDice",
 
@@ -34,19 +36,19 @@ export default {
     }
   },
 
-  data() {
-    return {
-      selected: false
-    }
+  computed: {
+    selected() {
+      return this.selectedDice.has(this.position);
+    },
+    ...mapState(["selectedDice"])
   },
 
   methods: {
     toggleLock() {
-      this.selected = !this.selected;
       if (this.selected) {
-        this.$store.commit("selectDice", this.position);
-      } else {
         this.$store.commit("removeDice", this.position);
+      } else {
+        this.$store.commit("selectDice", this.position);
       }
     }
   },

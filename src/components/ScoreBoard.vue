@@ -3,7 +3,11 @@
     <thead class="scoreboard__head">
       <tr>
         <th class="scoreboard__round">Round {{ round }}</th>
-        <th v-for="(score, name) in players" :key="name" :class="{'scoreboard__current-player': name === currentPlayer}">
+        <th
+          v-for="(score, name) in players"
+          :key="name"
+          :class="{ 'scoreboard__current-player': name === currentPlayer }"
+        >
           <span class="scoreboard__name">{{ name }}</span>
         </th>
       </tr>
@@ -15,13 +19,31 @@
           v-for="(score, name) in players"
           :key="name"
           :class="{
-            'has-button': score[categoryKey],
+            'has-button': name === currentPlayer && possibleScores[categoryKey],
             'scoreboard__current-player': name === currentPlayer
           }"
         >
           <CategoryButton
-            :score="score[categoryKey]"
-            v-if="score[categoryKey] && categoryKey === 'threes'"
+            :score="possibleScores[categoryKey]"
+            :player="currentPlayer"
+            :category="categoryKey"
+            v-if="
+              showScoringOptions &&
+                name === currentPlayer &&
+                possibleScores[categoryKey]
+            "
+          />
+          <CategoryButton
+            :score="0"
+            :player="currentPlayer"
+            :category="categoryKey"
+            v-else-if="
+              showScoringOptions &&
+                name === currentPlayer &&
+                noScoresPossible &&
+                !score[categoryKey] &&
+                score[categoryKey] !== 0
+            "
           />
           <div v-else>{{ score[categoryKey] }}</div>
         </td>
@@ -70,7 +92,16 @@ export default {
     };
   },
 
-  computed: mapState(["round", "players", "currentPlayer"])
+  computed: {
+    noScoresPossible() {
+      const total = Object.values(this.possibleScores).reduce(
+        (prev, current) => prev + current,
+        0
+      );
+      return total === 0;
+    },
+    ...mapState(["round", "players", "currentPlayer", "possibleScores", "showScoringOptions"])
+  }
 };
 </script>
 

@@ -56,7 +56,22 @@ export default new Vuex.Store({
         choice: null,
         yacht: null
       }
-    }
+    },
+    possibleScores: {
+      ones: null,
+      twos: null,
+      threes: null,
+      fours: null,
+      fives: 25,
+      sixes: null,
+      "full house": 4,
+      "four of a kind": null,
+      "little straight": null,
+      "big straight": null,
+      choice: null,
+      yacht: null
+    },
+    showScoringOptions: false
   },
 
   mutations: {
@@ -85,20 +100,47 @@ export default new Vuex.Store({
     },
 
     selectDice(state, payload) {
-      state.selectedDice.add(payload);
+      state.selectedDice = new Set(state.selectedDice.add(payload));
     },
 
     removeDice(state, payload) {
-      state.selectedDice.delete(payload);
+      state.selectedDice = new Set(state.selectedDice.delete(payload));
     },
 
     lockDice(state) {
       state.lockedDice = new Set([...state.lockedDice, ...state.selectedDice]);
       state.selectedDice.clear();
-    }
-  },
+    },
 
-  actions: {},
+    updatePlayerScore(state, payload) {
+      state.players[payload.player][payload.category] = payload.score;
+      state.possibleScores = {}
+    },
 
-  modules: {}
+    showScoringOptions(state) {
+      state.showScoringOptions = true;
+    },
+
+    hideScoringOptions(state) {
+      state.showScoringOptions = false;
+    },
+
+    nextTurn(state) {
+      const players = Object.keys(state.players);
+      let next = players.indexOf(state.currentPlayer) + 1;
+      let nextPlayer;
+
+      if (players[next]) {
+        nextPlayer = players[next];
+      } else {
+        nextPlayer = players[0];
+        state.round++;
+      }
+
+      state.rollsRemaining = 3;
+      state.currentPlayer = nextPlayer;
+      state.lockedDice = new Set();
+      state.selectedDice = new Set();
+    },
+  }
 });
