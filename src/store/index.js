@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    totalRounds: 1,
     round: 1,
     diceRoll: [1, 2, 3, 4, 5],
     lockedDice: [],

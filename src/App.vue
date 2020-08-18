@@ -1,16 +1,27 @@
 <template>
   <div class="app">
-    <GameBoard />
+    <GameBoard v-if="!finished" />
+    <EndBoard v-else />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import GameBoard from '@/views/GameBoard'
+import EndBoard from '@/views/EndBoard'
 
 export default {
   name: 'App',
   components: {
-    GameBoard
+    GameBoard,
+    EndBoard
+  },
+
+  computed: {
+    finished() {
+      return this.round > this.totalRounds
+    },
+    ...mapState(['round', 'totalRounds'])
   }
 }
 </script>
