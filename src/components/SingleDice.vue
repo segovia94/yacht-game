@@ -3,7 +3,7 @@
     class="dice dice--numbers"
     :class="{ 'dice--locked': locked, 'dice--selected': selected }"
   >
-    <button v-if="!locked" class="dice__toggle" @click="toggleLock">
+    <button v-if="clickable" class="dice__toggle" @click="toggleLock">
       {{ side }}
     </button>
     <div class="cube" :data-show="side">
@@ -40,9 +40,12 @@ export default {
 
   computed: {
     selected() {
-      return this.selectedDice.has(this.position)
+      return this.selectedDice.includes(this.position)
     },
-    ...mapState(['selectedDice'])
+    clickable() {
+      return !this.locked && this.rollsRemaining > 0 && this.rollsRemaining < 3
+    },
+    ...mapState(['selectedDice', 'rollsRemaining'])
   },
 
   methods: {

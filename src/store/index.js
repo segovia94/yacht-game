@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { categories } from '@/lib/categories'
+import { score } from '@/lib/score-engine'
 
 Vue.use(Vuex)
 
@@ -7,70 +9,18 @@ export default new Vuex.Store({
   state: {
     round: 1,
     diceRoll: [1, 2, 3, 4, 5],
-    lockedDice: new Set(),
-    selectedDice: new Set(),
+    lockedDice: [],
+    selectedDice: [],
     rollsRemaining: 3,
     showRules: false,
     currentPlayer: 'Player 1',
     // TODO: make players editable and possibly create a players class.
     players: {
-      'Player 1': {
-        ones: 3,
-        twos: null,
-        threes: null,
-        fours: null,
-        fives: null,
-        sixes: null,
-        'full house': null,
-        'four of a kind': null,
-        'little straight': null,
-        'big straight': null,
-        choice: null,
-        yacht: null
-      },
-      'Player 2': {
-        ones: null,
-        twos: null,
-        threes: 12,
-        fours: null,
-        fives: null,
-        sixes: 6,
-        'full house': null,
-        'four of a kind': null,
-        'little straight': null,
-        'big straight': null,
-        choice: null,
-        yacht: null
-      },
-      'Player 3': {
-        ones: null,
-        twos: null,
-        threes: null,
-        fours: null,
-        fives: null,
-        sixes: null,
-        'full house': null,
-        'four of a kind': null,
-        'little straight': null,
-        'big straight': null,
-        choice: null,
-        yacht: null
-      }
+      'Player 1': {},
+      'Player 2': {},
+      'Player 3': {}
     },
-    possibleScores: {
-      ones: null,
-      twos: null,
-      threes: null,
-      fours: null,
-      fives: 25,
-      sixes: null,
-      'full house': 4,
-      'four of a kind': null,
-      'little straight': null,
-      'big straight': null,
-      choice: null,
-      yacht: null
-    },
+    possibleScores: {},
     showScoringOptions: false
   },
 
@@ -100,21 +50,42 @@ export default new Vuex.Store({
     },
 
     selectDice(state, payload) {
-      state.selectedDice = new Set(state.selectedDice.add(payload))
+      state.selectedDice.push(payload)
     },
 
     removeDice(state, payload) {
-      state.selectedDice = new Set(state.selectedDice.delete(payload))
+      state.selectedDice = state.selectedDice.filter(dice => dice !== payload)
     },
 
     lockDice(state) {
-      state.lockedDice = new Set([...state.lockedDice, ...state.selectedDice])
-      state.selectedDice.clear()
+      state.lockedDice = [...state.lockedDice, ...state.selectedDice]
+      state.selectedDice = []
     },
 
     updatePlayerScore(state, payload) {
-      state.players[payload.player][payload.category] = payload.score
+      Vue.set(state.players[payload.player], payload.category, payload.score)
       state.possibleScores = {}
+    },
+
+    setPossibleScores(state) {
+      state.possibleScores = {}
+      categories.forEach(cat => {
+        if (state.players[state.currentPlayer][cat] === undefined) {
+          // Freeze the diceRoll so it doesn't get mutated by a sort.
+          const possibleScore = score([...state.diceRoll], cat)
+          if (possibleScore !== 0) {
+            state.possibleScores[cat] = possibleScore
+          }
+        }
+      })
+
+      if (Object.keys(state.possibleScores).length === 0) {
+        categories.forEach(cat => {
+          if (state.players[state.currentPlayer][cat] === null) {
+            state.possibleScores[cat] = 0
+          }
+        })
+      }
     },
 
     showScoringOptions(state) {
@@ -139,8 +110,8 @@ export default new Vuex.Store({
 
       state.rollsRemaining = 3
       state.currentPlayer = nextPlayer
-      state.lockedDice = new Set()
-      state.selectedDice = new Set()
+      state.lockedDice = []
+      state.selectedDice = []
     }
   }
 })

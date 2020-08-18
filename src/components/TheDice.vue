@@ -5,7 +5,7 @@
       :key="index"
       :position="index"
       :side="roll"
-      :locked="lockedDice.has(index)"
+      :locked="lockedDice.includes(index)"
     />
   </div>
 </template>
