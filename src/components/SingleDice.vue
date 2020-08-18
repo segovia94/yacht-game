@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dice"
+    class="dice dice--numbers"
     :class="{ 'dice--locked': locked, 'dice--selected': selected }"
   >
     <button v-if="!locked" class="dice__toggle" @click="toggleLock">
@@ -119,32 +119,46 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: radial-gradient(#fff, #fff 50%, #eee);
+  background-color: white;
+  background-size: cover;
   border: 0.05em solid black;
   border-radius: 5%;
-  color: black;
   font-size: 2.75em;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1;
+  text-indent: -9999px;
 }
 
 .cube__face--1 {
+  background-image: url('~@/assets/dice-1.svg');
   transform: rotateY(0deg) translateZ(var(--dice-size-half));
 }
 .cube__face--2 {
+  background-image: url('~@/assets/dice-2.svg');
   transform: rotateY(90deg) translateZ(var(--dice-size-half));
 }
 .cube__face--6 {
+  background-image: url('~@/assets/dice-6.svg');
   transform: rotateY(180deg) translateZ(var(--dice-size-half));
 }
 .cube__face--5 {
+  background-image: url('~@/assets/dice-5.svg');
   transform: rotateY(-90deg) translateZ(var(--dice-size-half));
 }
 .cube__face--3 {
+  background-image: url('~@/assets/dice-3.svg');
   transform: rotateX(90deg) translateZ(var(--dice-size-half));
 }
 .cube__face--4 {
+  background-image: url('~@/assets/dice-4.svg');
   transform: rotateX(-90deg) translateZ(var(--dice-size-half));
+}
+
+/* Optionally show numbers instead of dice graphics */
+.dice--numbers .cube__face {
+  background-image: radial-gradient(#fff, #fff 50%, #eee);
+  color: black;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  text-indent: initial;
 }
 </style>
