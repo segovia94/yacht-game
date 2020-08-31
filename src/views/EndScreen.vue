@@ -61,6 +61,7 @@ export default {
   background-color: rgba(0, 15, 2, 0.9);
   font-size: 2rem;
   text-align: center;
+  backdrop-filter: blur(4px);
 }
 
 .endscreen__title {
