@@ -63,6 +63,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .game-actions__toggle-rules {
@@ -92,8 +93,19 @@ export default {
   cursor: pointer;
 }
 
-.game-actions__button:disabled {
+.game-actions__button:hover,
+.game-actions__button:focus {
+  box-shadow: 0 0 0 .125rem var(--red);
+  opacity: .9;
+  outline-style: solid;
+  outline-color: transparent;
+}
+
+.game-actions__button:disabled,
+.game-actions__button:disabled:focus,
+.game-actions__button:disabled:hover {
   opacity: 0.25;
   cursor: initial;
+  box-shadow: none;
 }
 </style>

@@ -62,13 +62,19 @@ export default {
 
 <style>
 .dice {
-  --dice-size: 3.5rem;
+  --dice-size: clamp(3rem, 15vw, 6rem);
   --dice-size-half: calc(var(--dice-size) / 2);
   --dice-size-half-negative: calc(var(--dice-size-half) * -1);
   perspective: 400px;
   position: relative;
   padding: 0.2rem;
   border-radius: 5%;
+}
+
+@media screen and (min-width: 930px) {
+  .dice {
+    --dice-size: 3.5rem;
+  }
 }
 
 .dice--selected {

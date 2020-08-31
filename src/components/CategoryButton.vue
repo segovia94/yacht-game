@@ -50,13 +50,21 @@ export default {
   display: block;
   width: 100%;
   padding: 0.2rem 0;
-  background-color: var(--red);
+  background-color: var(--red-dark);
   border: 0;
   border-radius: 0.25rem;
   color: white;
   cursor: pointer;
   font-size: 1rem;
   animation: 1s delay-visibility;
+}
+
+.category-button:hover,
+.category-button:focus {
+  box-shadow: 0 0 0 .125rem var(--red);
+  opacity: .9;
+  outline-style: solid;
+  outline-color: transparent;
 }
 
 .category-button--pulse {
