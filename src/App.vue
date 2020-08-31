@@ -1,20 +1,20 @@
 <template>
   <div class="app">
-    <GameBoard v-if="!finished" />
-    <EndBoard v-else />
+    <GameBoard />
+    <EndScreen v-if="finished" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import GameBoard from '@/views/GameBoard'
-import EndBoard from '@/views/EndBoard'
+import EndScreen from '@/views/EndScreen'
 
 export default {
   name: 'App',
   components: {
     GameBoard,
-    EndBoard
+    EndScreen
   },
 
   computed: {
