@@ -4,17 +4,18 @@
       <h1 v-if="tie" class="endscreen__title">It's a Tie!</h1>
       <div v-else>
         <h1 class="endscreen__title">{{ winner.name }} Wins!!!</h1>
-        <h2>{{ winner.total }} points</h2>
+        <h2 class="endscreen__score">{{ winner.total }} points</h2>
       </div>
 
-      <ul v-for="player in totals" :key="player.name" class="endscreen__totals">
-        <li>{{ player.name }}: {{ player.total }}</li>
+      <ul class="endscreen__totals">
+        <li v-for="player in totals" :key="player.name">{{ player.name }}: {{ player.total }}</li>
       </ul>
     </div>
   </section>
 </template>
 
 <script>
+import { playerTotals } from '@/lib/helpers'
 import { mapState } from 'vuex'
 
 export default {
@@ -22,13 +23,7 @@ export default {
 
   computed: {
     totals() {
-      return Object.keys(this.players).map(person => {
-        const values = Object.values(this.players[person])
-        return {
-          name: person,
-          total: values.reduce((prev, current) => prev + current, 0)
-        }
-      })
+      return playerTotals(this.players)
     },
 
     winner() {
@@ -38,8 +33,8 @@ export default {
     },
 
     tie() {
-      const totals = this.totals.map(player => player.total)
-      return (new Set(totals)).size !== totals.length;
+      const totals = this.totals.map(player => player.total).sort().reverse()
+      return totals[0] === totals[1]
     },
 
     ...mapState(['players'])
@@ -65,14 +60,19 @@ export default {
 }
 
 .endscreen__title {
-  margin-top: 0;
+  margin: 0;
   line-height: 1;
   text-transform: uppercase;
+}
+
+.endscreen__score {
+  margin-top: 0;
+  font-size: 1.5rem;
 }
 
 .endscreen__totals {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 2rem 0 0 0;
 }
 </style>

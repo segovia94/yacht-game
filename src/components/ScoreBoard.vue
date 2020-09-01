@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import { categoriesLabeled, calculateTotal } from '@/lib/helpers'
 import { mapState } from 'vuex'
 import playerTotal from '@/components/PlayerTotal'
 import CategoryButton from '@/components/CategoryButton'
@@ -75,29 +76,15 @@ export default {
 
   data() {
     return {
-      categories: {
-        ones: 'Ones',
-        twos: 'Twos',
-        threes: 'Threes',
-        fours: 'Fours',
-        fives: 'Fives',
-        sixes: 'Sixes',
-        'full house': 'Full House',
-        'four of a kind': 'Four-of-a-Kind',
-        'little straight': 'Little Straight',
-        'big straight': 'Big Straight',
-        choice: 'Choice',
-        yacht: 'Yacht'
-      }
+      categories: categoriesLabeled
     }
   },
 
   computed: {
     noScoresPossible() {
-      const total = Object.values(this.possibleScores).reduce(
-        (prev, current) => prev + current,
-        0
-      )
+      const scores = Object.values(this.possibleScores)
+      const total = calculateTotal(scores)
+
       return total === 0
     },
     ...mapState([

@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { categories } from '@/lib/categories'
-import { score } from '@/lib/score-engine'
+import { nextPlayer, possibleScores } from '@/lib/helpers'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    totalRounds: 1,
+    totalRounds: 10,
     round: 1,
     diceRoll: [1, 2, 3, 4, 5],
     lockedDice: [],
@@ -26,24 +25,12 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    increaseRound(state) {
-      state.round++
-    },
-
-    resetRounds(state) {
-      state.round = 1
-    },
-
     setDiceRoll(state, payload) {
       state.diceRoll = payload
     },
 
     decreaseRollsRemaining(state) {
       state.rollsRemaining--
-    },
-
-    resetRollsRemaining(state) {
-      state.rollsRemaining = 3
     },
 
     toggleRules(state) {
@@ -69,24 +56,7 @@ export default new Vuex.Store({
     },
 
     setPossibleScores(state) {
-      state.possibleScores = {}
-      categories.forEach(cat => {
-        if (state.players[state.currentPlayer][cat] === undefined) {
-          // Freeze the diceRoll so it doesn't get mutated by a sort.
-          const possibleScore = score([...state.diceRoll], cat)
-          if (possibleScore !== 0) {
-            state.possibleScores[cat] = possibleScore
-          }
-        }
-      })
-
-      if (Object.keys(state.possibleScores).length === 0) {
-        categories.forEach(cat => {
-          if (state.players[state.currentPlayer][cat] === null) {
-            state.possibleScores[cat] = 0
-          }
-        })
-      }
+      state.possibleScores = possibleScores(state.players[state.currentPlayer], state.diceRoll)
     },
 
     showScoringOptions(state) {
@@ -98,19 +68,17 @@ export default new Vuex.Store({
     },
 
     nextTurn(state) {
-      const players = Object.keys(state.players)
-      let next = players.indexOf(state.currentPlayer) + 1
-      let nextPlayer
+      // Advance to the next player.
+      const next = nextPlayer(state.players, state.currentPlayer)
+      state.currentPlayer = next
 
-      if (players[next]) {
-        nextPlayer = players[next]
-      } else {
-        nextPlayer = players[0]
+      // Increase the round if we are back to the first player.
+      if (next === Object.keys(state.players)[0]) {
         state.round++
       }
 
+      // Reset values.
       state.rollsRemaining = 3
-      state.currentPlayer = nextPlayer
       state.lockedDice = []
       state.selectedDice = []
     }
