@@ -48,18 +48,18 @@ export const playerTotals = (players) => {
 /**
  * Get the next player from the list of players.
  * 
- * @param {object} players - the list of players with key as the name of the player.
+ * @param {object} players - the list of players with each key as the name of the player.
  * @param {string} currentPlayer - the current player.
  * 
  * @return {string} The name of the next player.
  */
-export const nextPlayer = (playersObj, currentPlayer) => {
-  const players = Object.keys(playersObj)
-  let next = players.indexOf(currentPlayer) + 1
-  let nextPlayer = players[0]
+export const nextPlayer = (players, currentPlayer) => {
+  const playerNames = Object.keys(players)
+  const next = playerNames.indexOf(currentPlayer) + 1
+  let nextPlayer = playerNames[0]
 
-  if (players[next]) {
-    nextPlayer = players[next]
+  if (playerNames[next]) {
+    nextPlayer = playerNames[next]
   }
 
   return nextPlayer
