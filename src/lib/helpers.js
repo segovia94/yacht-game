@@ -68,6 +68,9 @@ export const nextPlayer = (players, currentPlayer) => {
 /**
  * Determine all possible scores for remaining categories.
  * 
+ * If there are no possible scores available then every category which a player does
+ * Not currently have a score for should show a possible score of Zero.
+ * 
  * @param {object} player - A player's list of current scores.
  * @param {array} diceRoll - The number showing on each of the 5 dice rolled.
  */
@@ -98,7 +101,7 @@ export const possibleScores = (player, diceRoll) => {
 }
 
 /**
- * Roll the dice to get 5 numbers.
+ * Roll the dice to get 5 numbers. But only roll dice which have not been locked.
  *
  * @param {array} lockedDice - The indexes of locked dice which cannot be changed.
  * @param {array} oldRoll - The old roll of dice
