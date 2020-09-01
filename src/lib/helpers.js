@@ -109,3 +109,26 @@ export const possibleScores = (player, diceRoll) => {
 
   return scores
 }
+
+/**
+ * Roll the dice to get 5 numbers.
+ *
+ * @param {array} lockedDice - The indexes of locked dice which cannot be changed.
+ * @param {array} oldRoll - The old roll of dice
+ *
+ * @return {array} The new 5 dice numbers that have been rolled.
+ */
+export const rollDice = (lockedDice, oldRoll) => {
+  const roll = []
+  for (let i = 0; i < 5; i++) {
+    // Use the old dice roll number if it has been locked.
+    if (lockedDice.includes(i)) {
+      roll.push(oldRoll[i])
+    } else {
+      const randomNum = Math.floor(Math.random() * 6) + 1
+      roll.push(randomNum)
+    }
+  }
+
+  return roll
+}

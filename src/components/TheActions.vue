@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { rollDice } from '@/lib/helpers'
 import { mapState } from 'vuex'
 
 export default {
@@ -34,16 +35,8 @@ export default {
     roll() {
       this.$store.commit('lockDice')
 
-      const newRoll = []
-      for (let i = 0; i < 5; i++) {
-        // Use the old dice roll number if it has been locked.
-        if (this.lockedDice.includes(i)) {
-          newRoll.push(this.diceRoll[i])
-        } else {
-          const randomNum = Math.floor(Math.random() * 6) + 1
-          newRoll.push(randomNum)
-        }
-      }
+      // Roll the dice.
+      const newRoll = rollDice(this.lockedDice, this.diceRoll)
 
       this.$store.commit('setDiceRoll', newRoll)
       this.$store.commit('setPossibleScores')
