@@ -19,23 +19,23 @@ export const categoriesArr = Object.keys(categories)
 
 /**
  * Add up all the scores for a player.
- * 
+ *
  * @param {array} scores - list of scores to add together.
- * 
+ *
  * @return {array} The total score for a player.
  */
-export const sumTotal = (scores) => {
+export const sumTotal = scores => {
   return scores.reduce((prev, current) => prev + current, 0)
 }
 
 /**
  * Get the totals for each player.
- * 
+ *
  * @param {object} players - List of players and their scores.
- * 
+ *
  * @return {array} Each player as an object with name and total.
  */
-export const playerTotals = (players) => {
+export const playerTotals = players => {
   return Object.keys(players).map(person => {
     const values = Object.values(players[person])
     return {
@@ -47,10 +47,10 @@ export const playerTotals = (players) => {
 
 /**
  * Get the next player from the list of players.
- * 
+ *
  * @param {object} players - the list of players with each key as the name of the player.
  * @param {string} currentPlayer - the current player.
- * 
+ *
  * @return {string} The name of the next player.
  */
 export const nextPlayer = (players, currentPlayer) => {
@@ -67,10 +67,10 @@ export const nextPlayer = (players, currentPlayer) => {
 
 /**
  * Determine all possible scores for remaining categories.
- * 
+ *
  * If there are no possible scores available then every category which a player does
  * Not currently have a score for should show a possible score of Zero.
- * 
+ *
  * @param {object} player - A player's list of current scores.
  * @param {array} diceRoll - The number showing on each of the 5 dice rolled.
  */

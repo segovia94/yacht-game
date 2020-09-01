@@ -47,9 +47,12 @@ export default new Vuex.Store({
 
       // Reduce the number of rolls remaining.
       state.rollsRemaining--
-      
+
       // Create the possible scores for each category and reveal them.
-      state.possibleScores = possibleScores(state.players[state.currentPlayer], state.diceRoll)
+      state.possibleScores = possibleScores(
+        state.players[state.currentPlayer],
+        state.diceRoll
+      )
       state.showScoringOptions = true
     },
 

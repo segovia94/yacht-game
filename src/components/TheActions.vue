@@ -79,8 +79,8 @@ export default {
 
 .game-actions__button:hover,
 .game-actions__button:focus {
-  box-shadow: 0 0 0 .125rem var(--red);
-  opacity: .9;
+  box-shadow: 0 0 0 0.125rem var(--red);
+  opacity: 0.9;
   outline-style: solid;
   outline-color: transparent;
 }

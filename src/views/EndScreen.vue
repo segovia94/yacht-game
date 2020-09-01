@@ -8,7 +8,9 @@
       </div>
 
       <ul class="endscreen__totals">
-        <li v-for="player in totals" :key="player.name">{{ player.name }}: {{ player.total }}</li>
+        <li v-for="player in totals" :key="player.name">
+          {{ player.name }}: {{ player.total }}
+        </li>
       </ul>
     </div>
   </section>
@@ -33,7 +35,10 @@ export default {
     },
 
     tie() {
-      const totals = this.totals.map(player => player.total).sort().reverse()
+      const totals = this.totals
+        .map(player => player.total)
+        .sort()
+        .reverse()
       return totals[0] === totals[1]
     },
 
