@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { categoriesLabeled, calculateTotal } from '@/lib/helpers'
+import { categories, calculateTotal } from '@/lib/helpers'
 import { mapState } from 'vuex'
 import playerTotal from '@/components/PlayerTotal'
 import CategoryButton from '@/components/CategoryButton'
@@ -76,7 +76,7 @@ export default {
 
   data() {
     return {
-      categories: categoriesLabeled
+      categories
     }
   },
 

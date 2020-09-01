@@ -1,21 +1,6 @@
 import { score } from '@/lib/score-engine'
 
-export const categories = [
-  'ones',
-  'twos',
-  'threes',
-  'fours',
-  'fives',
-  'sixes',
-  'full house',
-  'four of a kind',
-  'little straight',
-  'big straight',
-  'choice',
-  'yacht'
-]
-
-export const categoriesLabeled = {
+export const categories = {
   ones: 'Ones',
   twos: 'Twos',
   threes: 'Threes',
@@ -29,6 +14,8 @@ export const categoriesLabeled = {
   choice: 'Choice',
   yacht: 'Yacht'
 }
+
+export const categoriesArr = Object.keys(categories)
 
 /**
  * Add up all the scores for a player.
@@ -86,8 +73,8 @@ export const nextPlayer = (playersObj, currentPlayer) => {
  */
 export const possibleScores = (player, diceRoll) => {
   const scores = {}
-  
-  categories.forEach(cat => {
+
+  categoriesArr.forEach(cat => {
     if (player[cat] === undefined) {
       // Freeze the diceRoll so it doesn't get mutated by a sort.
       const possibleScore = score([...diceRoll], cat)
@@ -100,7 +87,7 @@ export const possibleScores = (player, diceRoll) => {
   // If there are no possible scores, then set each remaining category to a
   // possible score of zero.
   if (Object.keys(scores).length === 0) {
-    categories.forEach(cat => {
+    categoriesArr.forEach(cat => {
       if (player[cat] === null) {
         scores[cat] = 0
       }
