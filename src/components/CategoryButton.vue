@@ -38,7 +38,7 @@ export default {
         player: this.player,
         category: this.category
       })
-      this.$store.commit('hideScoringOptions')
+
       this.$store.commit('nextTurn')
     }
   }

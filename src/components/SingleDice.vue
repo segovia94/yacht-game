@@ -51,7 +51,7 @@ export default {
   methods: {
     toggleLock() {
       if (this.selected) {
-        this.$store.commit('removeDice', this.position)
+        this.$store.commit('removeDiceFromSelected', this.position)
       } else {
         this.$store.commit('selectDice', this.position)
       }

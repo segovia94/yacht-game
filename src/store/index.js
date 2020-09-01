@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { nextPlayer, possibleScores } from '@/lib/helpers'
+import { nextPlayer, possibleScores, rollDice } from '@/lib/helpers'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    totalRounds: 10,
+    totalRounds: 2,
     round: 1,
     diceRoll: [1, 2, 3, 4, 5],
     lockedDice: [],
@@ -25,14 +25,6 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    setDiceRoll(state, payload) {
-      state.diceRoll = payload
-    },
-
-    decreaseRollsRemaining(state) {
-      state.rollsRemaining--
-    },
-
     toggleRules(state) {
       state.showRules = !state.showRules
     },
@@ -41,30 +33,29 @@ export default new Vuex.Store({
       state.selectedDice.push(payload)
     },
 
-    removeDice(state, payload) {
+    removeDiceFromSelected(state, payload) {
       state.selectedDice = state.selectedDice.filter(dice => dice !== payload)
     },
 
-    lockDice(state) {
+    rollDice(state) {
+      // Lock any selected dice before rolling.
       state.lockedDice = [...state.lockedDice, ...state.selectedDice]
       state.selectedDice = []
+
+      // Roll the dice.
+      state.diceRoll = rollDice(state.lockedDice, state.diceRoll)
+
+      // Reduce the number of rolls remaining.
+      state.rollsRemaining--
+      
+      // Create the possible scores for each category and reveal them.
+      state.possibleScores = possibleScores(state.players[state.currentPlayer], state.diceRoll)
+      state.showScoringOptions = true
     },
 
     updatePlayerScore(state, payload) {
       Vue.set(state.players[payload.player], payload.category, payload.score)
       state.possibleScores = {}
-    },
-
-    setPossibleScores(state) {
-      state.possibleScores = possibleScores(state.players[state.currentPlayer], state.diceRoll)
-    },
-
-    showScoringOptions(state) {
-      state.showScoringOptions = true
-    },
-
-    hideScoringOptions(state) {
-      state.showScoringOptions = false
     },
 
     nextTurn(state) {
@@ -81,6 +72,7 @@ export default new Vuex.Store({
       state.rollsRemaining = 3
       state.lockedDice = []
       state.selectedDice = []
+      state.showScoringOptions = false
     }
   }
 })

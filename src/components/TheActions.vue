@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { rollDice } from '@/lib/helpers'
 import { mapState } from 'vuex'
 
 export default {
@@ -33,15 +32,7 @@ export default {
 
   methods: {
     roll() {
-      this.$store.commit('lockDice')
-
-      // Roll the dice.
-      const newRoll = rollDice(this.lockedDice, this.diceRoll)
-
-      this.$store.commit('setDiceRoll', newRoll)
-      this.$store.commit('setPossibleScores')
-      this.$store.commit('decreaseRollsRemaining')
-      this.$store.commit('showScoringOptions')
+      this.$store.commit('rollDice')
     },
 
     toggleRules() {
