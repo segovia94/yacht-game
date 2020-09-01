@@ -24,7 +24,7 @@ export const categoriesArr = Object.keys(categories)
  * 
  * @return {array} The total score for a player.
  */
-export const calculateTotal = (scores) => {
+export const sumTotal = (scores) => {
   return scores.reduce((prev, current) => prev + current, 0)
 }
 
@@ -40,7 +40,7 @@ export const playerTotals = (players) => {
     const values = Object.values(players[person])
     return {
       name: person,
-      total: calculateTotal(values)
+      total: sumTotal(values)
     }
   })
 }

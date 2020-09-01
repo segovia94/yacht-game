@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { sumTotal } from '@/lib/helpers'
+
 export default {
   name: 'PlayerTotal',
 
@@ -15,8 +17,8 @@ export default {
 
   computed: {
     total() {
-      const values = Object.values(this.player)
-      return values.reduce((prev, current) => prev + current, 0)
+      const scores = Object.values(this.player)
+      return sumTotal(scores)
     }
   }
 }

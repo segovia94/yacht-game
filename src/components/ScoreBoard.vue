@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { categories, calculateTotal } from '@/lib/helpers'
+import { categories, sumTotal } from '@/lib/helpers'
 import { mapState } from 'vuex'
 import playerTotal from '@/components/PlayerTotal'
 import CategoryButton from '@/components/CategoryButton'
@@ -83,7 +83,7 @@ export default {
   computed: {
     noScoresPossible() {
       const scores = Object.values(this.possibleScores)
-      const total = calculateTotal(scores)
+      const total = sumTotal(scores)
 
       return total === 0
     },

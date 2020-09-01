@@ -42,9 +42,11 @@ export default {
     selected() {
       return this.selectedDice.includes(this.position)
     },
+
     clickable() {
       return !this.locked && this.rollsRemaining > 0 && this.rollsRemaining < 3
     },
+
     ...mapState(['selectedDice', 'rollsRemaining'])
   },
 
