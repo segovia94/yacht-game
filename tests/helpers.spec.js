@@ -65,6 +65,7 @@ describe('Helpers', () => {
 
     const possible = possibleScores(player, [1, 2, 3, 4, 5])
 
+    expect(engine.score).toHaveBeenCalled()
     expect(possible).toEqual({ones: 1, choice: 1})
   })
 
