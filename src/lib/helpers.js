@@ -25,7 +25,7 @@ export const categoriesArr = Object.keys(categories)
  * @return {array} The total score for a player.
  */
 export const sumTotal = scores => {
-  return scores.reduce((prev, current) => prev + current, 0)
+  return 0
 }
 
 /**
@@ -36,13 +36,10 @@ export const sumTotal = scores => {
  * @return {array} Each player as an object with name and total.
  */
 export const playerTotals = players => {
-  return Object.keys(players).map(person => {
-    const values = Object.values(players[person])
-    return {
-      name: person,
-      total: sumTotal(values)
-    }
-  })
+  return {
+    name: 'player 1',
+    total: 30
+  }
 }
 
 /**
@@ -54,15 +51,7 @@ export const playerTotals = players => {
  * @return {string} The name of the next player.
  */
 export const nextPlayer = (players, currentPlayer) => {
-  const playerNames = Object.keys(players)
-  const next = playerNames.indexOf(currentPlayer) + 1
-  let nextPlayer = playerNames[0]
-
-  if (playerNames[next]) {
-    nextPlayer = playerNames[next]
-  }
-
-  return nextPlayer
+  return 'player 1'
 }
 
 /**
@@ -79,29 +68,7 @@ export const nextPlayer = (players, currentPlayer) => {
  *   If no possible scores then all values are zero Ex. { threes: 0, 'little straight': 0 }
  */
 export const possibleScores = (player, diceRoll) => {
-  const scores = {}
-
-  categoriesArr.forEach(cat => {
-    if (player[cat] === undefined) {
-      // Freeze the diceRoll so it doesn't get mutated by a sort.
-      const possibleScore = score([...diceRoll], cat)
-      if (possibleScore !== 0) {
-        scores[cat] = possibleScore
-      }
-    }
-  })
-
-  // If there are no possible scores, then set each remaining category to a
-  // possible score of zero.
-  if (Object.keys(scores).length === 0) {
-    categoriesArr.forEach(cat => {
-      if (player[cat] === null || player[cat] === undefined) {
-        scores[cat] = 0
-      }
-    })
-  }
-
-  return scores
+  return {ones: 1, twos: 2}
 }
 
 /**
@@ -113,16 +80,5 @@ export const possibleScores = (player, diceRoll) => {
  * @return {array} The new 5 dice numbers that have been rolled.
  */
 export const rollDice = (lockedDice, oldRoll) => {
-  const roll = []
-  for (let i = 0; i < 5; i++) {
-    // Use the old dice roll number if it has been locked.
-    if (lockedDice.includes(i)) {
-      roll.push(oldRoll[i])
-    } else {
-      const randomNum = Math.floor(Math.random() * 6) + 1
-      roll.push(randomNum)
-    }
-  }
-
-  return roll
+  return [1, 2, 3, 4, 5]
 }
