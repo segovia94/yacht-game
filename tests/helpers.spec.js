@@ -1,18 +1,24 @@
-import { sumTotal, playerTotals, nextPlayer, possibleScores, rollDice } from '../src/lib/helpers'
+import {
+  sumTotal,
+  playerTotals,
+  nextPlayer,
+  possibleScores,
+  rollDice
+} from '../src/lib/helpers'
 import * as engine from '../src/lib/score-engine'
 
 describe('Helpers', () => {
   const players = {
     'player 1': {
-      'ones': 12,
-      'fours': 2
+      ones: 12,
+      fours: 2
     },
     'player 2': {
-      'ones': 4,
-      'fives': 0
+      ones: 4,
+      fives: 0
     },
     'player 3': {
-      'ones': 5,
+      ones: 5,
       'little straight': 20
     }
   }
@@ -65,7 +71,7 @@ describe('Helpers', () => {
 
     const possible = possibleScores(player, [1, 2, 3, 4, 5])
 
-    expect(possible).toEqual({ones: 1, choice: 1})
+    expect(possible).toEqual({ ones: 1, choice: 1 })
   })
 
   test('Possible Scores should not return zero if other scores are available', () => {
@@ -75,13 +81,11 @@ describe('Helpers', () => {
 
     // Mock the scoring engine.
     engine.score = jest.fn()
-    engine.score
-      .mockReturnValueOnce(1)
-      .mockReturnValue(0)
+    engine.score.mockReturnValueOnce(1).mockReturnValue(0)
 
     const possible = possibleScores(player, [1, 2, 3, 4, 5])
 
-    expect(possible).toEqual({ones: 1})
+    expect(possible).toEqual({ ones: 1 })
   })
 
   test('No Possible Scores Available', () => {
@@ -91,7 +95,7 @@ describe('Helpers', () => {
       threes: 1,
       fours: 1,
       fives: 1,
-      sixes: 1,
+      sixes: 1
     }
 
     // Mock the scoring engine to always return 0.
@@ -106,7 +110,7 @@ describe('Helpers', () => {
   test('Locked dice will not roll', () => {
     // Mock random math.
     global.Math.random = jest.fn(() => 0.9999)
-    
+
     const roll = rollDice([1, 3], [1, 2, 3, 4, 5])
     expect(roll).toEqual([6, 2, 6, 4, 6])
 
