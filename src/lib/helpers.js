@@ -1,4 +1,4 @@
-import { score } from '@/lib/score-engine'
+import { score } from './score-engine'
 
 export const categories = {
   ones: 'Ones',
@@ -31,7 +31,7 @@ export const sumTotal = scores => {
 /**
  * Get the totals for each player.
  *
- * @param {object} players - List of players and their scores.
+ * @param {object} players - List of players and their scores with each key as the name of the player.
  *
  * @return {array} Each player as an object with name and total.
  */
@@ -72,7 +72,11 @@ export const nextPlayer = (players, currentPlayer) => {
  * Not currently have a score for should show a possible score of Zero.
  *
  * @param {object} player - A player's list of current scores.
- * @param {array} diceRoll - The number showing on each of the 5 dice rolled.
+ * @param {array} diceRoll - The number showing on each of the 5 dice rolled Ex: [2, 1, 3, 6, 4].
+ * 
+ * @return {object} A key of each category not currently scored with a value of the possible score. 
+ *   Ex. { threes: 6, 'little straight': 30 }
+ *   If no possible scores then all values are zero Ex. { threes: 0, 'little straight': 0 }
  */
 export const possibleScores = (player, diceRoll) => {
   const scores = {}
@@ -91,7 +95,7 @@ export const possibleScores = (player, diceRoll) => {
   // possible score of zero.
   if (Object.keys(scores).length === 0) {
     categoriesArr.forEach(cat => {
-      if (player[cat] === null) {
+      if (player[cat] === null || player[cat] === undefined) {
         scores[cat] = 0
       }
     })
@@ -104,7 +108,7 @@ export const possibleScores = (player, diceRoll) => {
  * Roll the dice to get 5 numbers. But only roll dice which have not been locked.
  *
  * @param {array} lockedDice - The indexes of locked dice which cannot be changed.
- * @param {array} oldRoll - The old roll of dice
+ * @param {array} oldRoll - The old roll of dice Ex: [2, 1, 3, 6, 4].
  *
  * @return {array} The new 5 dice numbers that have been rolled.
  */
