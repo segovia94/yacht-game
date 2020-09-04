@@ -61,7 +61,7 @@ export default {
 .spot {
   background: black;
   border-radius: 50%;
-  transform: scale(1.3);
+  transform: scale(1.5);
 }
 
 .spot-tl {
