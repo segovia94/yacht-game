@@ -17,6 +17,7 @@ module.exports = {
         singleQuote: true,
         semi: false
       }
-    ]
+    ],
+    'no-unused-vars': 'warn'
   }
 }
