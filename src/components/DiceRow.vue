@@ -1,6 +1,6 @@
 <template>
   <div class="dice-container">
-    <SingleDice
+    <DiceSingle
       v-for="(roll, index) in diceRoll"
       :key="index"
       :position="index"
@@ -12,13 +12,13 @@
 
 <script>
 import { mapState } from 'vuex'
-import SingleDice from '@/components/SingleDice'
+import DiceSingle from '@/components/DiceSingle'
 
 export default {
-  name: 'TheDice',
+  name: 'DiceRow',
 
   components: {
-    SingleDice
+    DiceSingle
   },
 
   computed: mapState(['diceRoll', 'lockedDice'])
