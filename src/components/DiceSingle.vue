@@ -1,27 +1,32 @@
 <template>
   <div
-    class="dice dice--numbers"
+    class="dice"
     :class="{ 'dice--locked': locked, 'dice--selected': selected }"
   >
     <button v-if="clickable" class="dice__toggle" @click="toggleLock">
       {{ side }}
     </button>
     <div class="cube" :data-show="side">
-      <div class="cube__face cube__face--1">1</div>
-      <div class="cube__face cube__face--6">6</div>
-      <div class="cube__face cube__face--2">2</div>
-      <div class="cube__face cube__face--5">5</div>
-      <div class="cube__face cube__face--3">3</div>
-      <div class="cube__face cube__face--4">4</div>
+      <DiceFace :side="1" class="cube__face cube__face--1">1</DiceFace>
+      <DiceFace :side="6" class="cube__face cube__face--6">6</DiceFace>
+      <DiceFace :side="2" class="cube__face cube__face--2">2</DiceFace>
+      <DiceFace :side="5" class="cube__face cube__face--5">5</DiceFace>
+      <DiceFace :side="3" class="cube__face cube__face--3">3</DiceFace>
+      <DiceFace :side="4" class="cube__face cube__face--4">4</DiceFace>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import DiceFace from '@/components/DiceFace'
 
 export default {
-  name: 'SingleDice',
+  name: 'DiceSingle',
+
+  components: {
+    DiceFace
+  },
 
   props: {
     position: {
@@ -139,37 +144,21 @@ export default {
 }
 
 .cube__face--1 {
-  background-image: url('~@/assets/dice-1.svg');
   transform: rotateY(0deg) translateZ(var(--dice-size-half));
 }
 .cube__face--2 {
-  background-image: url('~@/assets/dice-2.svg');
   transform: rotateY(90deg) translateZ(var(--dice-size-half));
 }
 .cube__face--6 {
-  background-image: url('~@/assets/dice-6.svg');
   transform: rotateY(180deg) translateZ(var(--dice-size-half));
 }
 .cube__face--5 {
-  background-image: url('~@/assets/dice-5.svg');
   transform: rotateY(-90deg) translateZ(var(--dice-size-half));
 }
 .cube__face--3 {
-  background-image: url('~@/assets/dice-3.svg');
   transform: rotateX(90deg) translateZ(var(--dice-size-half));
 }
 .cube__face--4 {
-  background-image: url('~@/assets/dice-4.svg');
   transform: rotateX(-90deg) translateZ(var(--dice-size-half));
-}
-
-/* Optionally show numbers instead of dice graphics */
-.dice--numbers .cube__face {
-  background-image: radial-gradient(#fff, #fff 50%, #eee);
-  color: black;
-  font-weight: bold;
-  line-height: 1;
-  text-align: center;
-  text-indent: initial;
 }
 </style>

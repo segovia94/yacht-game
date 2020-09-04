@@ -1,6 +1,6 @@
 <template>
   <section class="gameboard">
-    <TheDice class="gameboard__dice" />
+    <DiceRow class="gameboard__dice" />
     <TheActions class="gameboard__actions" />
     <TheRules class="gameboard__rules" />
     <ScoreBoard class="gameboard__score-board" />
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import TheDice from '@/components/TheDice'
+import DiceRow from '@/components/DiceRow'
 import TheActions from '@/components/TheActions'
 import TheRules from '@/components/TheRules'
 import ScoreBoard from '@/components/ScoreBoard'
@@ -16,7 +16,7 @@ import ScoreBoard from '@/components/ScoreBoard'
 export default {
   name: 'GameBoard',
   components: {
-    TheDice,
+    DiceRow,
     TheActions,
     TheRules,
     ScoreBoard
