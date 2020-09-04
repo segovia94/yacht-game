@@ -33,7 +33,7 @@
       <div class="spot spot-mr"></div>
       <div class="spot spot-bl"></div>
       <div class="spot spot-br"></div>
-    </template>  
+    </template>
   </div>
 </template>
 

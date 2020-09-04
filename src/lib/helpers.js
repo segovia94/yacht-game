@@ -62,13 +62,13 @@ export const nextPlayer = (players, currentPlayer) => {
  *
  * @param {object} player - A player's list of current scores.
  * @param {array} diceRoll - The number showing on each of the 5 dice rolled Ex: [2, 1, 3, 6, 4].
- * 
- * @return {object} A key of each category not currently scored with a value of the possible score. 
+ *
+ * @return {object} A key of each category not currently scored with a value of the possible score.
  *   Ex. { threes: 6, 'little straight': 30 }
  *   If no possible scores then all values are zero Ex. { threes: 0, 'little straight': 0 }
  */
 export const possibleScores = (player, diceRoll) => {
-  return {ones: 1, twos: 2}
+  return { ones: 1, twos: 2 }
 }
 
 /**
