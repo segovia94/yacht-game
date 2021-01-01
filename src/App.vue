@@ -7,8 +7,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import GameBoard from '@/views/GameBoard'
-import EndScreen from '@/views/EndScreen'
+import GameBoard from '@/views/GameBoard.vue'
+import EndScreen from '@/views/EndScreen.vue'
 
 export default {
   name: 'App',

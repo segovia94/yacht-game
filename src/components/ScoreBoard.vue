@@ -53,7 +53,7 @@
       <tr>
         <td>Total</td>
         <td v-for="(score, name) in players" :key="name">
-          <playerTotal :player="score" />
+          <PlayerTotal :player="score" />
         </td>
       </tr>
     </tfoot>
@@ -63,14 +63,14 @@
 <script>
 import { categories, sumTotal } from '@/lib/helpers'
 import { mapState } from 'vuex'
-import playerTotal from '@/components/PlayerTotal'
-import CategoryButton from '@/components/CategoryButton'
+import PlayerTotal from '@/components/PlayerTotal.vue'
+import CategoryButton from '@/components/CategoryButton.vue'
 
 export default {
   name: 'ScoreBoard',
 
   components: {
-    playerTotal,
+    PlayerTotal,
     CategoryButton
   },
 

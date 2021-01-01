@@ -12,7 +12,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import DiceSingle from '@/components/DiceSingle'
+import DiceSingle from '@/components/DiceSingle.vue'
 
 export default {
   name: 'DiceRow',

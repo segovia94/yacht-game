@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import DiceRow from '@/components/DiceRow'
-import TheActions from '@/components/TheActions'
-import TheRules from '@/components/TheRules'
-import ScoreBoard from '@/components/ScoreBoard'
+import DiceRow from '@/components/DiceRow.vue'
+import TheActions from '@/components/TheActions.vue'
+import TheRules from '@/components/TheRules.vue'
+import ScoreBoard from '@/components/ScoreBoard.vue'
 
 export default {
   name: 'GameBoard',

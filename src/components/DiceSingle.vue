@@ -19,7 +19,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import DiceFace from '@/components/DiceFace'
+import DiceFace from '@/components/DiceFace.vue'
 
 export default {
   name: 'DiceSingle',
